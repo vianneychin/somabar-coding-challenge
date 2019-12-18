@@ -1,13 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import {
-  SafeAreaView,
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  Image,
-  ScrollView,
-} from 'react-native'
+import React, { useState } from 'react'
+import { SafeAreaView, View, TextInput, Image, ScrollView } from 'react-native'
+
+import styles from './styles'
 
 const accessKey =
   'ad6b790cd1db3888100bdfcf14d84c73f0e7300f81aec1d891031922857a2e2b'
@@ -38,18 +32,16 @@ const App = () => {
   }
 
   const renderPhotos = () => {
-    return unsplashData.map((item, index) => {
-      return (
-        <View key={item.id} style={styles.imageWrapper}>
-          <Image
-            style={styles.image}
-            source={{
-              uri: item.urls.small,
-            }}
-          />
-        </View>
-      )
-    })
+    return unsplashData.map(item => (
+      <View key={item.id} style={styles.imageWrapper}>
+        <Image
+          style={styles.image}
+          source={{
+            uri: item.urls.small,
+          }}
+        />
+      </View>
+    ))
   }
 
   return (
@@ -71,52 +63,5 @@ const App = () => {
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  /* Container styles */
-  mainContainer: {
-    flex: 1,
-    backgroundColor: 'rgb(240, 240, 240)',
-  },
-  inputContainer: {
-    flex: 0.45,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  outerImageContainer: {
-    flex: 1,
-  },
-  imagesContainer: {
-    paddingTop: 40,
-    marginLeft: 15,
-    marginRight: 15,
-    justifyContent: 'center',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-    borderTopWidth: 1,
-    borderColor: 'rgb(150, 150, 150)',
-  },
-
-  /* Misc. */
-  input: {
-    backgroundColor: 'white',
-    width: '70%',
-    fontSize: 20,
-    borderWidth: 1,
-    borderColor: 'rgb(200, 200, 200)',
-    paddingLeft: 20,
-    paddingRight: 20,
-  },
-  imageWrapper: {
-    backgroundColor: 'white',
-  },
-  image: {
-    backgroundColor: 'pink',
-    height: 125,
-    aspectRatio: 1.45,
-    margin: 2.5,
-  },
-})
 
 export default App
