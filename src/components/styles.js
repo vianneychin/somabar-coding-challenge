@@ -42,7 +42,7 @@ export default StyleSheet.create({
   image: {
     backgroundColor: 'grey',
     height: 125,
-    aspectRatio: 1.45,
+    aspectRatio: 1.25,
     margin: 2.5,
   },
 })
