@@ -1,32 +1,47 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView, View, Text, TextInput, StyleSheet } from 'react-native'
 
 const accessKey =
   'ad6b790cd1db3888100bdfcf14d84c73f0e7300f81aec1d891031922857a2e2b'
-const secretKey =
-  '9af57a2345249a02ae5a2a072644aa9ccb05f5f4d755a959d011c7f54f5f4a96'
-
-const unsplashApi = `https://api.unsplash.com/search/photos?client_id=${accessKey}&query=coffee`
 
 const App = () => {
-  useEffect(() => {
-    const fetchApi = async () => {
-      try {
-        const api = await fetch(unsplashApi)
-        const response = api.json()
-        console.log(response)
-      } catch (error) {
-        console.log(error)
-      }
+  const [searchQuery, setSearchQuery] = useState('')
+
+  // useEffect(() => {
+  const fetchApi = async query => {
+    try {
+      const api = await fetch(
+        `https://api.unsplash.com/search/photos?client_id=${accessKey}&query=${query}`,
+      )
+      const response = await api.json()
+      return response.results
+    } catch (error) {
+      console.log(error)
     }
-    // fetchApi()
-  }, [])
+  }
+  // }, [])
+
+  const onChangeText = txt => {
+    setSearchQuery(txt)
+    console.log(searchQuery)
+  }
+
+  const onSubmitEditing = () => {
+    // Search the api for results.
+
+    fetchApi(searchQuery)
+
+    console.log(searchQuery, '🍕')
+  }
 
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="i.e., cars, coffee, cocktails"
+          value={searchQuery}
+          onChangeText={onChangeText}
+          onSubmitEditing={onSubmitEditing}
           style={styles.input}
         />
       </View>
