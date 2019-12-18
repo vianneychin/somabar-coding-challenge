@@ -17,9 +17,8 @@ const App = () => {
       )
       const response = await api.json()
       setUnsplashData(response.results)
-      console.log(response.results)
     } catch (error) {
-      console.log(error)
+      console.error
     }
   }
 
