@@ -40,7 +40,7 @@ export default StyleSheet.create({
     backgroundColor: 'white',
   },
   image: {
-    backgroundColor: 'pink',
+    backgroundColor: 'grey',
     height: 125,
     aspectRatio: 1.45,
     margin: 2.5,
